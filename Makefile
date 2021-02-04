@@ -356,6 +356,9 @@ endif
 .PHONY: clean get-deps deps test set-path static static-docker docs man .pre-build .check-environment .check-git .no-git 
 
 # For a normal dynamic build we remove the static build marker
+## ruolin: vw is installed under c++03 boost 1.70 because that is what available in dokit 
+## Thus the main_recalibrate.o failed to link with c++11. Have to remove this object for now.  
+SUBCOMMAND_OBJ := $(filter-out obj/subcommand/recalibrate_main.o,${SUBCOMMAND_OBJ})
 $(BIN_DIR)/$(EXE): $(OBJ_DIR)/main.o $(LIB_DIR)/libvg.a $(UNITTEST_OBJ) $(SUBCOMMAND_OBJ) $(CONFIGURATION_OBJ) $(DEPS) $(LINK_DEPS)
 	-rm -f $(LIB_DIR)/vg_is_static
 	. ./source_me.sh && $(CXX) $(LDFLAGS) $(INCLUDE_FLAGS) $(CPPFLAGS) $(CXXFLAGS) -o $(BIN_DIR)/$(EXE) $(OBJ_DIR)/main.o $(UNITTEST_OBJ) $(SUBCOMMAND_OBJ) $(CONFIGURATION_OBJ) -lvg $(LD_LIB_DIR_FLAGS) $(LD_LIB_FLAGS) $(START_STATIC) $(LD_STATIC_LIB_FLAGS) $(END_STATIC) $(LD_STATIC_LIB_DEPS) 
@@ -414,7 +417,7 @@ test/build_graph: test/build_graph.cpp $(LIB_DIR)/libvg.a $(SRC_DIR)/vg.hpp
 	. ./source_me.sh && $(CXX) $(LDFLAGS) $(INCLUDE_FLAGS) $(CPPFLAGS) $(CXXFLAGS) -o test/build_graph test/build_graph.cpp -lvg $(LD_LIB_DIR_FLAGS) $(LD_LIB_FLAGS) $(START_STATIC) $(LD_STATIC_LIB_FLAGS) $(END_STATIC) $(FILTER)
 
 $(LIB_DIR)/libjemalloc.a: $(JEMALLOC_DIR)/src/*.c
-	+. ./source_me.sh && cd $(JEMALLOC_DIR) && ./autogen.sh && ./configure --disable-libdl --prefix=`pwd` $(FILTER) && $(MAKE) CXXFLAGS='-std=c++11'$(FILTER) && cp -r lib/* $(CWD)/$(LIB_DIR)/ && cp -r include/* $(CWD)/$(INC_DIR)/
+	+. ./source_me.sh && cd $(JEMALLOC_DIR) && ./autogen.sh && ./configure --disable-libdl --prefix=`pwd` $(FILTER) && $(MAKE) $(FILTER) && cp -r lib/* $(CWD)/$(LIB_DIR)/ && cp -r include/* $(CWD)/$(INC_DIR)/
 
 # Use fake patterns to tell Make that this rule generates all these files when run once.
 # Here % should always match "lib" which is a common substring.

@@ -11,6 +11,13 @@ export CXXFLAGS="-I $(pwd)/include -I$(pwd)/include/dynamic ${CXXFLAGS}"
 export PATH=`pwd`/bin:`pwd`/scripts:$PATH
 export CC=$(which gcc)
 export CXX=$(which g++)
+export CPLUS_INCLUDE_PATH=/broad/software/free/Linux/redhat_7_x86_64/pkgs/cairo_1.14.2/include/cairo/:$CPLUS_INCLUDE_PATH
+source /broad/software/scripts/useuse
+reuse -q .boost-1.70.0 
+reuse -q .bison-3.0.4 
+reuse -q .flex-2.5.39
+reuse -q .cairo-1.14.2
+reuse -q .zlib-1.2.8
 
 #
 #  disable until file arguments work as in normal bash :(
