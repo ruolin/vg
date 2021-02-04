@@ -2318,7 +2318,7 @@ double MinimizerMapper::faster_cap(const vector<Minimizer>& minimizers, vector<s
     cerr << "log10prob after all minimizers is " << c.back() << endl;
 #endif
     
-    assert(!isinf(c.back()));
+    assert(!std::isinf(c.back()));
     // Conver to Phred.
     double result = -c.back() * 10;
     return result;

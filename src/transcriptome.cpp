@@ -1074,7 +1074,7 @@ list<EditedTranscriptPath> Transcriptome::project_transcript_embedded(const Tran
                     assert(border_offsets.first + 1 == _splice_graph->get_length(_splice_graph->get_handle_of_step(haplotype_path_start_step)));
                     assert(border_offsets.second == 0);
 
-                    swap(haplotype_path_start_step, haplotype_path_end_step);
+                    std::swap(haplotype_path_start_step, haplotype_path_end_step);
                     border_offsets.first = _splice_graph->get_length(_splice_graph->get_handle_of_step(haplotype_path_start_step)) - 1;
                 }
 

@@ -430,7 +430,7 @@ int main_annotate(int argc, char** argv) {
                 }
                 cout << "\t";
                 
-                if (isnan(record.score)) {
+                if (std::isnan(record.score)) {
                     cout << ".";
                 }
                 else {

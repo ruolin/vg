@@ -295,7 +295,7 @@ TEST_CASE("Mapping quality cap cannot be confused by excessive Gs", "[giraffe][m
     double cap = TestableMinimizerMapper::faster_cap(minimizers, minimizers_explored, sequence, quality);
     
     // The MAPQ cap should not be infinite.
-    REQUIRE(!isinf(cap));
+    REQUIRE(!std::isinf(cap));
 }
 
 

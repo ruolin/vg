@@ -213,7 +213,7 @@ int main_recalibrate(int argc, char** argv) {
                 string example_string = alignment_to_example_string(aln, false);
                 
                 // Load an example for each Alignment.
-                example* example = VW::read_example(*model, example_string);
+                example* example = VW::read_example(*model, example_string.c_str());
                 
                 // Now we call the learn method, defined in vowpalwabbit/global_data.h.
                 // It's not clear what it does but it is probably training.

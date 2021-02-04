@@ -75,9 +75,10 @@ public:
     size_t id_interval = gbwt::DynamicGBWT::SAMPLE_INTERVAL;
     
     /// Range of VCF samples to process (first to past-last).
-    std::pair<size_t, size_t> sample_range = std::pair<size_t, size_t>(0, std::numeric_limits<size_t>::max());
-    
-    /// Region restrictions for contigs, in VCF name space, as 0-based
+    //std::pair<size_t, size_t> sample_range = std::pair<size_t, size_t>(0, std::numeric_limits<size_t>::max());
+  std::pair<size_t, size_t> sample_range = std::make_pair(0, std::numeric_limits<size_t>::max());
+
+  /// Region restrictions for contigs, in VCF name space, as 0-based
     /// exclusive-end ranges.
     std::map<std::string, std::pair<size_t, size_t>> regions;
     

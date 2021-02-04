@@ -744,11 +744,11 @@ vector<MaximalExactMatch> BaseMapper::find_fanout_mems(string::const_iterator se
         }
         for (size_t i = 0; i < index.size(); ++i) {
             while (index[i] != i) {
-                swap(mems[i], mems[index[i]]);
+                std::swap(mems[i], mems[index[i]]);
                 if (mem_fanout_breaks) {
-                    swap((*mem_fanout_breaks)[i], (*mem_fanout_breaks)[index[i]]);
+                    std::swap((*mem_fanout_breaks)[i], (*mem_fanout_breaks)[index[i]]);
                 }
-                swap(index[i], index[index[i]]);
+                std::swap(index[i], index[index[i]]);
             }
         }
     }

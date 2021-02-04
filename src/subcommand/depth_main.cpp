@@ -202,7 +202,7 @@ int main_depth(int argc, char** argv) {
                     algorithms::binned_packed_depth(*packer, ref_path, bin_size, min_coverage, count_dels);
                 for (auto& bin_cov : binned_depth) {
                     // bins can ben nan if min_coverage filters everything out.  just skip
-                    if (!isnan(get<3>(bin_cov))) {
+                    if (!std::isnan(get<3>(bin_cov))) {
                         cout << ref_path << "\t" << (get<0>(bin_cov) + 1)<< "\t" << (get<1>(bin_cov) + 1) << "\t" << get<2>(bin_cov)
                              << "\t" << sqrt(get<3>(bin_cov)) << endl;
                     }

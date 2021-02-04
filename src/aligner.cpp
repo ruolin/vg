@@ -422,7 +422,7 @@ double GSSWAligner::alignment_score_partition_function(double lambda, const int8
         }
     }
     
-    if (isnan(partition)) {
+    if (std::isnan(partition)) {
         cerr << "error:[Aligner] overflow error in log-odds base recovery subroutine." << endl;
         exit(1);
     }

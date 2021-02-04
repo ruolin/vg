@@ -179,7 +179,7 @@ pair<float, float> get_depth_from_index(const BinnedDepthIndex& depth_index, con
      
     // accept backward ranges
     if (end_offset < start_offset) {
-        swap(start_offset, end_offset);
+        std::swap(start_offset, end_offset);
     }
     size_t bin_size = 1 + end_offset - start_offset;
     // pad it out
